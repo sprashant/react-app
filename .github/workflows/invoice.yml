@@ -1,27 +1,29 @@
-name: react CICD initial
+name: React CI/CD Initial
 
 on:
   push:
     branches:
-      -main
-    pull_request:
-      -main
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-permissions:
-  actions: read
-  contents: read
-  security-events: write
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
-  steps:
-    name: checkout repo
-    uses: actions/chckout@v3
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    name: setup node js
-    uses: actions/setup-node@v3
-    with:
-      node-version: 18
-      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+     
