@@ -90,8 +90,8 @@ jobs:
             --registry-login-server reactsampleapp1acr.azurecr.io \
             --registry-username ${{ secrets.AZURE_CLIENT_ID }} \
             --registry-password ${{ secrets.AZURE_CLIENT_SECRET }} \
-            --dns-name-label myapp-container \
+            --dns-name-label pvr-test \
             --ports 80 \
             --os-type Linux \
             --cpu 1 \
-            --memory 1.5
+            --memory 2
