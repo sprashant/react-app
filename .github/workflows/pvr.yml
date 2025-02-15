@@ -76,22 +76,22 @@ jobs:
         run: |
           docker push reactsampleapp1acr.azurecr.io/react-app:latest
 
-  # deploy:
-  #   needs: docker
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy to Azure Container Instances
-  #       run: |
-  #         az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-  #         az container create \
-  #           --resource-group countdown-react-app \
-  #           --name my-container \
-  #           --image reactsampleapp1acr.azurecr.io/react-app:latest \
-  #           --registry-login-server reactsampleapp1acr.azurecr.io \
-  #           --registry-username ${{ secrets.AZURE_CLIENT_ID }} \
-  #           --registry-password ${{ secrets.AZURE_CLIENT_SECRET }} \
-  #           --dns-name-label myapp-container \
-  #           --ports 80 \
-  #           --os-type Linux \
-  #           --cpu 1 \
-  #           --memory 1
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Azure Container Instances
+        run: |
+          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+          az container create \
+            --resource-group countdown-react-app \
+            --name my-container \
+            --image reactsampleapp1acr.azurecr.io/react-app:latest \
+            --registry-login-server reactsampleapp1acr.azurecr.io \
+            --registry-username ${{ secrets.AZURE_CLIENT_ID }} \
+            --registry-password ${{ secrets.AZURE_CLIENT_SECRET }} \
+            --dns-name-label myapp-container \
+            --ports 80 \
+            --os-type Linux \
+            --cpu 1 \
+            --memory 1

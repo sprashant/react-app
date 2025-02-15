@@ -3,10 +3,10 @@ name: React CI/CD with Docker
 on:
   push:
     branches:
-      - main
+      - Rakesh
   pull_request:
     branches:
-      - main
+      - Rakesh
 
 jobs:
   build:
